@@ -1,0 +1,700 @@
+<!doctype html>
+<html lang="ru">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Алена Сивакова — AI-продукты</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Wix+Madefor+Display:wght@500;600;700;800&family=Onest:wght@400;500;600&display=swap">
+<style>
+/* Layout: night glass — calm ink-blue ground, content sits on lighter glass panels outlined by a hairline lilac neon (like a lit card edge) */
+:root {
+  --night: #121628;
+  --panel: #1c2138;
+  --panel-2: #232944;
+  --line: rgba(200, 190, 255, .14);
+  --line-2: rgba(200, 190, 255, .24);
+  --text: #f1f0fa;
+  --muted: #bdbfd6;
+  --faint: #8c8fac;
+  --pearl: #c9bcff;
+  --neon: #c3b2ff;
+  --neon-soft: rgba(195, 178, 255, .5);
+  --neon-glow: rgba(170, 150, 255, .26);
+  --amber: #e3ad66;
+  --lilac: #c3b2ff;
+  --cyan: #4fd6e2;
+  --red: #f2554a;
+  --ok: #6fd3a0;
+  --f-display: "Wix Madefor Display", "Onest", system-ui, sans-serif;
+  --f-body: "Onest", system-ui, -apple-system, "Segoe UI", sans-serif;
+  color-scheme: dark;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+body {
+  background-color: var(--night); color: var(--text);
+  background-image: radial-gradient(70% 40% at 50% 0%, rgba(150, 130, 255, .10), transparent 70%);
+  background-repeat: no-repeat;
+  font: 400 16px/1.6 var(--f-body);
+  -webkit-font-smoothing: antialiased;
+}
+.wrap {
+  max-width: 1160px; margin: 0 auto;
+  padding-left: max(20px, env(safe-area-inset-left, 0px));
+  padding-right: max(20px, env(safe-area-inset-right, 0px));
+}
+h1, h2, h3 { font-family: var(--f-display); font-weight: 700; margin: 0; text-wrap: balance; letter-spacing: -.025em; }
+p { margin: 0; }
+a { color: var(--pearl); text-underline-offset: 3px; }
+a:focus-visible, button:focus-visible { outline: 2px solid var(--pearl); outline-offset: 3px; border-radius: 6px; }
+figure { margin: 0; }
+.label { font-size: 14px; color: var(--muted); }
+.label::before { content: ""; display: inline-block; width: 7px; height: 7px; border-radius: 50%; background: var(--light, var(--pearl)); margin-right: 8px; vertical-align: 1px; }
+
+/* ---------- hero ---------- */
+.hero { padding-block: 72px 48px; }
+.hero-top { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 340px); gap: 32px 48px; align-items: center; }
+.ai-flow { width: 100%; height: auto; overflow: visible; filter: drop-shadow(0 0 14px rgba(160, 135, 255, .28)); }
+.ai-flow .ic rect, .ai-flow .ic path { fill: none; stroke: var(--neon); stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+.ai-flow .ic > rect:first-child { fill: rgba(28, 33, 56, .9); stroke: rgba(195, 178, 255, .55); }
+.ai-flow .ic-ai > rect:first-child { stroke: var(--neon); fill: rgba(60, 48, 120, .45); }
+.ai-flow .spark { fill: var(--neon) !important; stroke: none !important; }
+.ai-flow .ok { stroke: var(--ok) !important; stroke-width: 2.2 !important; }
+.ai-flow .link { fill: none; stroke: url(#nf); stroke-width: 1.4; stroke-dasharray: 4 5; }
+.ai-flow .dot { fill: var(--neon); }
+.ai-flow text { fill: var(--text); font: 600 15px var(--f-body); }
+.ai-flow text.sub { fill: var(--muted); font: 400 13px var(--f-body); }
+@media (max-width: 960px) { .hero-top { grid-template-columns: 1fr; } .ai-flow { max-width: 340px; } }
+.who { display: flex; flex-wrap: wrap; gap: 6px 22px; font-size: 15px; color: var(--muted); }
+.who b { color: var(--text); font-weight: 600; }
+.hero h1 { margin-top: 28px; font-size: clamp(34px, 4.6vw, 60px); line-height: 1.02; font-weight: 800; letter-spacing: -.03em; max-width: 13em; }
+/* lit glass: solid letters filled with a pearl gradient, white at the top fading to lilac, with a soft neon halo */
+@supports ((-webkit-background-clip: text) or (background-clip: text)) {
+  .hero h1 {
+    background: linear-gradient(180deg, #ffffff 0%, #ece6ff 45%, #b9a6ff 100%);
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+    filter: drop-shadow(0 0 22px rgba(160, 135, 255, .35));
+  }
+}
+.hero .lead { margin-top: 28px; font-size: clamp(17px, 1.7vw, 20px); line-height: 1.55; color: var(--muted); max-width: 36em; }
+.path { margin: 22px 0 0; padding: 0; list-style: none; display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 0 28px; max-width: 900px; counter-reset: p; }
+.path li { padding: 14px 0 14px 30px; border-top: 1px solid var(--line); position: relative; font-size: 15px; line-height: 1.5; color: var(--text); min-width: 0; }
+.path li::before { counter-increment: p; content: counter(p); position: absolute; left: 0; top: 15px; font: 600 13px/1 var(--f-display); color: var(--pearl); }
+.path li b { display: block; font-size: 16px; font-weight: 600; color: var(--text); margin-bottom: 2px; }
+
+/* ---------- project index ---------- */
+.index { padding-block: 8px 24px; display: grid; grid-template-columns: repeat(4, minmax(0,1fr)); gap: 14px; }
+.index a { position: relative; display: grid; grid-template-rows: auto 1fr; text-decoration: none; color: var(--text); border-radius: 4px; overflow: hidden; background: var(--panel); border: 1px solid var(--line); transition: border-color .2s, transform .2s; min-width: 0; }
+.index a:hover { border-color: color-mix(in srgb, var(--light) 60%, transparent); transform: translateY(-2px); }
+.index .thumb { aspect-ratio: 16 / 10; overflow: hidden; border-bottom: 1px solid var(--line); background: radial-gradient(80% 90% at 50% 100%, color-mix(in srgb, var(--light) 45%, transparent), transparent 75%); }
+.index .thumb img { width: 100%; height: 100%; object-fit: cover; object-position: top; display: block; opacity: .92; }
+.index .txt { padding: 14px 16px 16px; display: grid; gap: 4px; align-content: start; }
+.index b { font-family: var(--f-display); font-size: 18px; font-weight: 700; letter-spacing: -.02em; }
+.index .txt span { font-size: 14px; color: var(--muted); line-height: 1.4; }
+.index .txt .label { font-size: 13px; }
+
+/* ---------- method ---------- */
+.method { margin-top: 56px; padding-block: 36px; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); display: grid; grid-template-columns: 240px minmax(0,1fr); gap: 32px; }
+.method h2 { font-size: 20px; }
+.method p.sub { margin-top: 8px; font-size: 14px; color: var(--muted); }
+.track { margin: 8px 0 0; padding: 0; display: grid; grid-template-columns: repeat(7, minmax(0,1fr)); counter-reset: st; }
+.track li { list-style: none; position: relative; padding: 14px 10px 0 0; border-top: 1px solid var(--line-2); font-size: 14px; line-height: 1.35; min-width: 0; }
+.track li::before { counter-increment: st; content: counter(st); position: absolute; top: -10px; left: 0; width: 20px; height: 20px; border-radius: 50%; background: var(--night); border: 1px solid var(--pearl); color: var(--pearl); font: 600 11px/18px var(--f-display); text-align: center; }
+.track li b { display: block; margin-top: 8px; font-weight: 600; }
+.track li span { color: var(--muted); font-size: 13px; }
+
+/* ---------- case ---------- */
+.case { padding-block: 96px 24px; scroll-margin-top: 12px; }
+.case > .ruler { margin-bottom: 28px; }
+#tarot { --light: var(--amber); }
+#trinadea { --light: var(--lilac); }
+#jetour { --light: var(--cyan); }
+#bank { --light: var(--red); }
+.case-head { display: grid; grid-template-columns: minmax(0,1fr) auto; gap: 16px 32px; align-items: end; }
+.case-head .meta { font-size: 15px; color: var(--muted); margin-bottom: 12px; }
+.case-head h2 { font-size: clamp(36px, 5.4vw, 64px); line-height: 1; letter-spacing: -.035em; }
+.status { display: grid; gap: 8px; justify-items: end; text-align: right; font-size: 14px; color: var(--muted); }
+.pill { display: inline-flex; align-items: center; gap: 8px; padding: 7px 14px; border-radius: 3px; font-size: 14px; font-weight: 500; white-space: nowrap; color: var(--text); background: color-mix(in srgb, var(--light) 16%, transparent); border: 1px solid color-mix(in srgb, var(--light) 40%, transparent); }
+.pill::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--light); box-shadow: 0 0 10px var(--light); }
+.pill.live::before { background: var(--ok); box-shadow: 0 0 10px var(--ok); }
+
+.origin { margin-top: 28px; display: grid; grid-template-columns: 200px minmax(0,1fr); gap: 8px 32px; padding: 24px 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+.origin-text { display: grid; gap: 10px; }
+.origin p { font-size: 16px; line-height: 1.6; max-width: 48em; }
+.case > .one { margin-top: 28px; font-family: var(--f-display); font-size: 20px; line-height: 1.35; font-weight: 700; letter-spacing: -.025em; max-width: 40em; text-wrap: balance; }
+/* origin as three short points instead of a wall of text */
+.origin-points { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 12px; }
+.origin-points div { padding: 16px 18px; border-radius: 12px; background: var(--panel-2); border: 1px solid var(--line); min-width: 0; }
+.origin-points b { display: block; margin-bottom: 6px; font-family: var(--f-display); font-size: 16px; font-weight: 700; color: var(--text); }
+.origin-points p { font-size: 15px; line-height: 1.55; color: var(--muted); }
+.origin-points .chain { display: flex; flex-wrap: wrap; gap: 6px; margin: 0; padding: 0; list-style: none; }
+.origin-points .chain li { font-size: 14px; line-height: 1.3; padding: 5px 10px; border-radius: 99px; border: 1px solid var(--neon-soft); background: rgba(195,178,255,.08); color: var(--text); }
+.origin-points .chain li + li::before { content: "→ "; color: var(--neon); }
+.origin:has(.origin-points) { grid-template-columns: 1fr; gap: 14px; }
+@media (max-width: 960px) { .origin-points { grid-template-columns: 1fr; } }
+
+/* the one bold move: screenshots sit in a pool of their project's light */
+.stage { margin-top: 36px; position: relative; isolation: isolate; }
+.stage::before { content: ""; position: absolute; inset: -40px -20px -60px; z-index: -1; pointer-events: none;
+  background: radial-gradient(60% 55% at 50% 45%, color-mix(in srgb, var(--light) 30%, transparent), transparent 70%); filter: blur(10px); }
+.shot img { display: block; width: 100%; height: auto; border-radius: 4px; border: 1px solid var(--line-2); background: var(--panel); }
+.shot figcaption { margin-top: 12px; font-size: 14px; color: var(--muted); }
+.shot.trio { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 14px; }
+.shot.trio img:first-child { grid-column: 1 / -1; }
+.shot.trio img:not(:first-child) { aspect-ratio: 949 / 640; object-fit: cover; object-position: top; }
+.shot.trio figcaption { grid-column: 1 / -1; margin-top: 0; }
+/* screenshot with numbered hotspots; one shared tip box is positioned by script next to the active dot */
+.shot.hotspots { position: relative; max-width: 760px; margin-inline: auto; }
+.hs { position: absolute; transform: translate(-50%, -50%); width: 30px; height: 30px; border-radius: 50%; padding: 0; cursor: pointer;
+  font: 700 13px/1 var(--f-display); color: #17122e; background: var(--neon); border: 2px solid #fff;
+  box-shadow: 0 0 0 0 rgba(195,178,255,.6), 0 4px 14px rgba(0,0,0,.5); animation: hs-pulse 2.4s ease-out infinite; }
+.hs:hover, .hs:focus-visible, .hs[aria-expanded="true"] { background: #fff; outline: none; animation: none; box-shadow: 0 0 0 6px rgba(195,178,255,.35); }
+@keyframes hs-pulse { 70% { box-shadow: 0 0 0 12px rgba(195,178,255,0), 0 4px 14px rgba(0,0,0,.5); } 100% { box-shadow: 0 0 0 0 rgba(195,178,255,0), 0 4px 14px rgba(0,0,0,.5); } }
+.hs-tip { position: absolute; z-index: 5; width: min(270px, calc(100% - 16px)); padding: 14px 16px; border-radius: 12px; pointer-events: none;
+  background: linear-gradient(var(--panel-2), var(--panel-2)) padding-box, linear-gradient(135deg, var(--neon), var(--neon-soft) 50%, var(--neon)) border-box;
+  border: 1px solid transparent; box-shadow: 0 18px 40px -10px rgba(0,0,0,.7), 0 0 24px -6px var(--neon-glow); }
+.hs-tip b { display: block; margin-bottom: 4px; font: 700 15px/1.3 var(--f-display); color: var(--text); }
+.hs-tip span { display: block; font-size: 14px; line-height: 1.5; color: var(--muted); }
+.shot.hotspots figcaption { text-align: center; }
+@media (max-width: 640px) { .hs { width: 24px; height: 24px; font-size: 11px; } }
+/* layered collage: the home page in front, two inner pages fanned out behind it on the right */
+.shot.collage { display: grid; grid-template-columns: minmax(0, 1.75fr) minmax(0, 1fr); align-items: center; padding: 8px 0 12px; }
+.shot.collage img { aspect-ratio: auto; transition: transform .35s ease; }
+.shot.collage img:first-child { grid-column: 1; grid-row: 1 / 3; position: relative; z-index: 2; box-shadow: 0 24px 60px -20px rgba(0,0,0,.7), 0 0 30px -8px var(--neon-glow); }
+.shot.collage img:not(:first-child) { grid-column: 2; aspect-ratio: 949 / 600; object-fit: cover; object-position: top; margin-left: -48px; width: calc(100% + 48px); max-width: none; }
+.shot.collage img:nth-child(2) { grid-row: 1; transform: rotate(2.5deg) translate(-18px, 18px); z-index: 1; }
+.shot.collage img:nth-child(3) { grid-row: 2; transform: rotate(-2.5deg) translate(-4px, -10px); z-index: 3; }
+.shot.collage img:hover { transform: none; z-index: 4; }
+.shot.collage figcaption { grid-column: 1 / -1; margin-top: 28px; }
+@media (max-width: 640px) {
+  .shot.collage { grid-template-columns: 1fr 1fr; gap: 12px; }
+  .shot.collage img:first-child { grid-column: 1 / -1; grid-row: auto; }
+  .shot.collage img:not(:first-child) { grid-column: auto; grid-row: auto; margin-left: 0; width: 100%; transform: none; }
+  .shot.collage figcaption { margin-top: 4px; }
+}
+.shot.phones { display: grid; grid-template-columns: repeat(4, minmax(0,1fr)); gap: 18px 14px; }
+.shot.phones figure { min-width: 0; }
+.shot.phones img { aspect-ratio: 390 / 844; object-fit: cover; object-position: top; border-radius: 10px; }
+.shot.phones figcaption { margin-top: 8px; }
+.shot.related { display: grid; grid-template-columns: repeat(2, minmax(0, 260px)); gap: 14px; }
+.shot.related img { aspect-ratio: 390 / 844; object-fit: cover; border-radius: 10px; }
+.shot.related figcaption { grid-column: 1 / -1; margin-top: 0; }
+
+.htrack { margin-top: 56px; display: grid; grid-template-columns: repeat(4, minmax(0,1fr)); gap: 12px; }
+.htrack div { padding: 18px; border-radius: 3px; background: var(--panel); border: 1px solid var(--line); min-width: 0; }
+.htrack .label { display: block; margin-bottom: 8px; }
+.htrack p { font-size: 15px; line-height: 1.55; }
+.htrack .k-metric { background: color-mix(in srgb, var(--light) 10%, var(--panel)); border-color: color-mix(in srgb, var(--light) 35%, transparent); }
+.htrack.three { grid-template-columns: repeat(3, minmax(0,1fr)); }
+
+.cols { margin-top: 44px; display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 36px 56px; }
+.block h3 { font-size: 20px; letter-spacing: -.02em; padding-bottom: 12px; border-bottom: 1px solid var(--line-2); margin-bottom: 14px; }
+.block ul { margin: 0; padding: 0; list-style: none; display: grid; gap: 10px; }
+.block li { position: relative; padding-left: 20px; font-size: 15px; line-height: 1.55; color: var(--muted); }
+.block li b { color: var(--text); font-weight: 600; }
+.block li::before { content: ""; position: absolute; left: 0; top: .66em; width: 6px; height: 6px; border-radius: 50%; background: var(--light); opacity: .8; }
+.block.wide { grid-column: 1 / -1; }
+.block.wide ul { grid-template-columns: repeat(2, minmax(0,1fr)); gap: 10px 56px; }
+
+.result { margin-top: 44px; display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 0; border-top: 1px solid var(--line-2); }
+.result div { padding: 20px 20px 0 0; min-width: 0; }
+.result div + div { padding-left: 20px; border-left: 1px solid var(--line); }
+.result b { display: block; font-family: var(--f-display); font-size: clamp(22px, 2.4vw, 28px); font-weight: 700; letter-spacing: -.025em; line-height: 1.15; font-variant-numeric: tabular-nums; color: var(--text); }
+.result span { display: block; margin-top: 6px; font-size: 14px; line-height: 1.45; color: var(--muted); }
+
+/* ---------- bands ---------- */
+.band { margin-top: 96px; padding-block: 64px 8px; border-top: 1px solid var(--line); }
+.band > h2 { font-size: clamp(30px, 4vw, 46px); letter-spacing: -.03em; }
+.band > p.sub { margin-top: 14px; color: var(--muted); max-width: 44em; font-size: 17px; }
+.ways { margin-top: 36px; display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 12px; }
+.way { padding: 22px; border-radius: 3px; background: var(--panel); border: 1px solid var(--line); min-width: 0; }
+.way h3 { font-size: 18px; line-height: 1.3; margin-bottom: 8px; letter-spacing: -.015em; }
+.way p { font-size: 15px; color: var(--muted); }
+
+
+.bg-grid { margin-top: 32px; display: grid; grid-template-columns: repeat(4, minmax(0,1fr)); border-top: 1px solid var(--line-2); }
+.bg-grid div { padding: 20px 20px 0 0; min-width: 0; }
+.bg-grid div + div { padding-left: 20px; border-left: 1px solid var(--line); }
+.bg-grid b { display: block; font-family: var(--f-display); font-size: 26px; font-weight: 700; letter-spacing: -.025em; }
+.bg-grid span { font-size: 14px; color: var(--muted); }
+
+/* ---------- contact ---------- */
+.contact { margin-top: 96px; padding-block: 64px 88px; border-top: 1px solid var(--line); display: grid; grid-template-columns: minmax(0,1fr) auto; gap: 28px; align-items: end; position: relative; isolation: isolate; }
+.contact::before { content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none;
+  background: radial-gradient(40% 70% at 15% 100%, rgba(227,173,102,.12), transparent 70%), radial-gradient(40% 70% at 45% 100%, rgba(188,170,242,.12), transparent 70%), radial-gradient(40% 70% at 75% 100%, rgba(79,214,226,.10), transparent 70%), radial-gradient(35% 70% at 100% 100%, rgba(242,85,74,.10), transparent 70%); }
+.contact h2 { font-size: clamp(30px, 4.4vw, 52px); line-height: 1.05; letter-spacing: -.035em; }
+.contact p { margin-top: 14px; color: var(--muted); max-width: 38em; }
+.mail { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+.mail code { font: 500 16px var(--f-body); padding: 13px 16px; border-radius: 3px; background: var(--panel); border: 1px solid var(--line-2); user-select: all; }
+.mail button { font: 600 15px var(--f-body); padding: 13px 18px; border-radius: 3px; border: 0; background: var(--text); color: var(--night); cursor: pointer; }
+.mail button:hover { background: var(--pearl); }
+
+/* ---------- step map: problem → hypothesis → MVP → metric on one glowing line ---------- */
+.htrack { position: relative; padding-top: 46px; counter-reset: hs; row-gap: 46px; }
+.htrack::before { content: ""; position: absolute; left: 18px; right: 18px; top: 17px; height: 2px; border-radius: 2px;
+  background: linear-gradient(90deg, rgba(195,178,255,.25), var(--neon) 50%, var(--light, var(--neon)));
+  box-shadow: 0 0 12px rgba(170,150,255,.45); }
+.htrack > div { position: relative; counter-increment: hs; }
+.htrack > div::before { content: counter(hs); position: absolute; top: -46px; left: 18px; width: 34px; height: 34px; border-radius: 50%;
+  display: grid; place-items: center; font: 700 14px/1 var(--f-display); color: var(--text);
+  background: var(--night); border: 1.5px solid var(--neon); box-shadow: 0 0 14px rgba(170,150,255,.5), inset 0 0 8px rgba(170,150,255,.25); }
+.htrack > div::after { content: ""; position: absolute; top: -12px; left: 34px; width: 2px; height: 12px; background: var(--neon-soft); }
+.htrack > .k-metric::before { background: var(--neon); color: #17122e; }
+.htrack .label { font-family: var(--f-display); font-size: 16px; font-weight: 700; color: var(--text); }
+.htrack .label::before { display: none; }
+@media (max-width: 960px) { .htrack::before { display: none; } }
+
+/* ---------- neon glass panels: hairline lilac edge, brighter at the top-left like a lit card ---------- */
+.index a, .htrack div, .way, .origin, .block, .result div, .bg-grid div, .mail code {
+  background:
+    linear-gradient(var(--panel), var(--panel)) padding-box,
+    linear-gradient(135deg, var(--neon) 0%, var(--neon-soft) 25%, rgba(195,178,255,.2) 55%, var(--neon) 100%) border-box;
+  border: 1px solid transparent;
+  border-radius: 14px;
+  box-shadow: 0 0 0 1px rgba(0,0,0,.2), 0 12px 32px -12px var(--neon-glow), inset 0 1px 0 rgba(255,255,255,.04);
+}
+.index a:hover { border-color: transparent; box-shadow: 0 0 0 1px rgba(0,0,0,.2), 0 0 28px -4px rgba(170,150,255,.35); }
+.origin { padding: 24px; border-bottom: 1px solid transparent; }
+.block { padding: 22px 24px; }
+.block h3 { border-bottom-color: var(--line); }
+.result { border-top: 0; gap: 12px; }
+.result div, .result div + div { padding: 18px 20px; border-left: 1px solid transparent; }
+.bg-grid { border-top: 0; gap: 12px; }
+.bg-grid div, .bg-grid div + div { padding: 18px 20px; border-left: 1px solid transparent; }
+.htrack .k-metric { background:
+    linear-gradient(var(--panel-2), var(--panel-2)) padding-box,
+    linear-gradient(135deg, var(--neon), var(--neon-soft) 40%, var(--neon) 100%) border-box; }
+.pill { border-radius: 99px; background: rgba(195,178,255,.10); border-color: var(--neon-soft); }
+.shot img { border-color: var(--neon-soft); box-shadow: 0 0 24px -8px var(--neon-glow); }
+.mail button { background: var(--neon); color: #17122e; border-radius: 10px; }
+.mail button:hover { background: #ddd3ff; }
+.mail code { padding: 12px 16px; }
+.path li, .track li { border-top-color: var(--line-2); }
+.method { border-color: var(--line); }
+.track li::before { border-color: var(--neon); color: var(--neon); }
+.label::before { box-shadow: 0 0 8px var(--light, var(--neon)); }
+
+@media (max-width: 960px) {
+  .path { grid-template-columns: repeat(2, minmax(0,1fr)); }
+  .index { grid-template-columns: repeat(2, minmax(0,1fr)); }
+  .method { grid-template-columns: 1fr; gap: 16px; }
+  .track { grid-template-columns: repeat(4, minmax(0,1fr)); row-gap: 26px; }
+  .htrack { grid-template-columns: repeat(2, minmax(0,1fr)); }
+  .htrack.three { grid-template-columns: 1fr; }
+  .cols { grid-template-columns: 1fr; gap: 32px; }
+  .block.wide ul { grid-template-columns: 1fr; }
+  .ways { grid-template-columns: 1fr 1fr; }
+  .bg-grid { grid-template-columns: 1fr 1fr; row-gap: 20px; }
+  .origin { grid-template-columns: 1fr; }
+}
+@media (max-width: 640px) {
+  .path, .index, .htrack, .ways { grid-template-columns: 1fr; }
+  .case-head { grid-template-columns: 1fr; }
+  .status { justify-items: start; text-align: left; }
+  .track { grid-template-columns: repeat(2, minmax(0,1fr)); }
+  .shot.trio, .shot.phones { grid-template-columns: 1fr 1fr; }
+  .shot.related { grid-template-columns: 1fr 1fr; }
+  .result { grid-template-columns: 1fr; }
+  .contact { grid-template-columns: 1fr; }
+}
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+</style>
+
+<header class="wrap hero">
+  <div class="hero-top">
+    <div>
+      <div class="who"><b>Алена Сивакова</b><span>Product и Growth marketing с ИИ</span><span>Удалённо</span></div>
+      <h1>Довожу гипотезу до работающего продукта</h1>
+      <p class="lead">7+ лет в бренд-менеджменте FMCG и beauty, усиленные ИИ.</p>
+    </div>
+    <svg class="ai-flow" viewBox="0 0 360 230" role="img" aria-label="Схема: идея и ИИ превращаются в готовый продукт">
+      <defs>
+        <linearGradient id="nf" x1="0" x2="1" y1="0" y2="0"><stop offset="0" stop-color="#c3b2ff" stop-opacity=".25"/><stop offset=".5" stop-color="#c3b2ff"/><stop offset="1" stop-color="#c3b2ff" stop-opacity=".25"/></linearGradient>
+      </defs>
+      <!-- idea: lightbulb -->
+      <g class="ic" transform="translate(10 52)">
+        <rect x="0" y="0" width="80" height="80" rx="18"/>
+        <path d="M40 20a14 14 0 0 0-8 25.5V52h16v-6.5A14 14 0 0 0 40 20z"/>
+        <path d="M34 58h12"/>
+      </g>
+      <!-- AI: chip with spark -->
+      <g class="ic ic-ai" transform="translate(140 52)">
+        <rect x="0" y="0" width="80" height="80" rx="18"/>
+        <rect x="22" y="22" width="36" height="36" rx="6"/>
+        <path d="M30 22v-8M40 22v-8M50 22v-8M30 66v-8M40 66v-8M50 66v-8M22 30h-8M22 40h-8M22 50h-8M66 30h-8M66 40h-8M66 50h-8"/>
+        <path class="spark" d="M40 30l2.6 7.4L50 40l-7.4 2.6L40 50l-2.6-7.4L30 40l7.4-2.6z"/>
+      </g>
+      <!-- product: app window with check -->
+      <g class="ic" transform="translate(270 52)">
+        <rect x="0" y="0" width="80" height="80" rx="18"/>
+        <rect x="18" y="16" width="44" height="48" rx="6"/>
+        <path d="M18 26h44"/>
+        <path class="ok" d="M30 45l7 7 13-14"/>
+      </g>
+      <path class="link" d="M94 92h42M224 92h42"/>
+      <circle class="dot" cx="115" cy="92" r="3"/><circle class="dot" cx="245" cy="92" r="3"/>
+      <text x="50" y="164" text-anchor="middle">Идея</text>
+      <text x="180" y="164" text-anchor="middle">ИИ</text>
+      <text x="310" y="164" text-anchor="middle">Продукт</text>
+      <text class="sub" x="180" y="196" text-anchor="middle">гипотеза → сборка → запуск</text>
+    </svg>
+  </div>
+  <ol class="path">
+    <li><b>Исследование</b>интервью, конкуренты, ниша и спрос</li>
+    <li><b>Позиционирование</b>для кого продукт и чем он лучше</li>
+    <li><b>Дизайн</b>свой визуальный стиль под каждую аудиторию</li>
+    <li><b>Разработка с ИИ</b>сайты и приложения без команды разработки</li>
+    <li><b>SEO и аналитика</b>поиск, AI-поиск, события и воронки</li>
+    <li><b>Запуск</b>домен, оплата, юридические документы, тестировщики</li>
+  </ol>
+</header>
+
+<nav class="wrap index" aria-label="Проекты">
+  <a href="#tarot" style="--light: var(--amber)"><div class="thumb"><img src="img/tarot-desk.jpg" alt="" width="1366" height="860"></div><div class="txt"><span class="label">США, сайт открыт</span><b>Tarot Orbit</b><span>Таро-сервис на английском: SEO, платный доступ, личный кабинет</span></div></a>
+  <a href="#trinadea" style="--light: var(--lilac)"><div class="thumb"><img src="img/trinadea.jpg" alt="" width="1400" height="606"></div><div class="txt"><span class="label">Для бренда косметики</span><b>TRINADEA</b><span>PWA-трекер цикла и кожи для бренда сывороток</span></div></a>
+  <a href="#jetour" style="--light: var(--cyan)"><div class="thumb"><img src="img/jetour.jpg" alt="" width="520" height="1125" style="object-position: center 30%"></div><div class="txt"><span class="label">Бета-тест</span><b>CarHelp</b><span>Интерактивное руководство автовладельца: машина, значки приборки, ТО</span></div></a>
+  <a href="#bank" style="--light: var(--red)"><div class="thumb"><img src="img/bank.jpg" alt="" width="1000" height="1076"></div><div class="txt"><span class="label">Концепт</span><b>Банк «по-моему»</b><span>Редизайн главного экрана банковского приложения</span></div></a>
+</nav>
+
+<section class="wrap method" aria-labelledby="m-h">
+  <div>
+    <h2 id="m-h">Как читать кейсы</h2>
+    <p class="sub">Каждый проект прошёл один и тот же цикл. Цифры только реальные; то, что ещё не измерено, помечено как план.</p>
+  </div>
+  <ol class="track">
+    <li><b>Проблема</b><span>чья и почему болит</span></li>
+    <li><b>Гипотеза</b><span>что изменит поведение</span></li>
+    <li><b>MVP</b><span>минимум, который проверит</span></li>
+    <li><b>Запуск</b><span>открытый сайт или закрытый тест</span></li>
+    <li><b>Метрика</b><span>что считаю успехом</span></li>
+    <li><b>Вывод</b><span>что подтвердилось</span></li>
+    <li><b>Дальше</b><span>следующий эксперимент</span></li>
+  </ol>
+</section>
+
+<!-- ============ TAROT ============ -->
+<article class="wrap case" id="tarot">
+  <div class="case-head">
+    <div>
+      <p class="meta">Для англоязычной аудитории, сентябрь–октябрь 2026</p>
+      <h2>Tarot Orbit</h2>
+    </div>
+    <div class="status">
+      <span class="pill live">Сайт открыт с 26.10.2026</span>
+      <a class="link" href="https://tarotorbit.com" target="_blank" rel="noopener">tarotorbit.com ↗</a>
+    </div>
+  </div>
+  <div class="origin">
+    <span class="label">Откуда идея</span>
+    <div class="origin-points">
+      <div>
+        <b>Цель</b>
+        <ul class="chain"><li>свободная растущая ниша</li><li>зарубежный рынок</li><li>монетизация</li><li>рынок России</li></ul>
+      </div>
+      <div>
+        <b>Почему таро</b>
+        <p>Значения карт ищут каждый день — это органический трафик без рекламного бюджета.</p>
+      </div>
+      <div>
+        <b>Где место для продукта</b>
+        <p>Приложения склеивают трактовки из шаблонных обрывков. Здесь каждый текст написан целиком и звучит как расклад от реального таролога.</p>
+      </div>
+    </div>
+  </div>
+  <p class="one">Справочник по 78 картам таро. Расклады, трактовки и саморефлексия. Авторские иллюстрации.</p>
+
+  <div class="stage">
+    <figure class="shot collage">
+      <img src="img/tarot-desk.jpg" alt="Главная Tarot Orbit: логотип, три карты с иллюстрациями, счётчики 78 карт, 22 старших, 56 младших арканов" width="1366" height="860" loading="lazy">
+      <img src="img/tarot-card.jpg" alt="Страница карты The Star целиком: иллюстрация, прямое и перевёрнутое значение по сферам жизни, первый шаг и вопрос к себе" width="949" height="1200" loading="lazy">
+      <img src="img/tarot-partner.jpg" alt="Собранный партнёрский расклад из 5 карт: карты по позициям, «Вы и партнёр», что держит и что мешает, общий тон" width="949" height="1200" loading="lazy">
+      <figcaption>Главная, страница карты с полной трактовкой и собранный партнёрский расклад из 5 карт</figcaption>
+    </figure>
+  </div>
+
+  <div class="htrack">
+    <div><span class="label">Проблема</span><p>Информацию о картах сложно искать, а самостоятельно собрать полную трактовку расклада почти невозможно. Аналогов с таким функционалом нет.</p></div>
+    <div><span class="label">Гипотеза</span><p>Если собрать все 78 карт и готовые расклады с полной трактовкой в одном месте, люди будут находить сайт в поиске и возвращаться к нему. Трактовки учитывают сочетания карт и работают, даже если колоды дома нет. Трафик — органика из поиска.</p></div>
+    <div><span class="label">MVP</span><p>Справочник, «Карта дня» раз в день, 6 раскладов, одна бесплатная проба каждого, подписка на 1, 3 и 12 месяцев.</p></div>
+    <div class="k-metric"><span class="label">Метрика</span><p>Показы в поиске, кликабельность (CTR), конверсия в пробный расклад, конверсия в подписку, возвращаемость.</p></div>
+  </div>
+
+  <div class="cols">
+    <section class="block">
+      <h3>Что сделано</h3>
+      <ul>
+        <li><b>78 карт в едином стиле:</b> промпты под стиль колоды, генерация в ChatGPT, английские подписи на картах.</li>
+        <li><b>Сайт на Astro: 92 английские страницы</b> — справочник, 5 мастей, 78 карт, расклады, тарифы, кабинет, юридические страницы.</li>
+        <li><b>Личный кабинет:</b> вход по паролю, восстановление доступа, история раскладов с полной трактовкой.</li>
+        <li><b>SEO и AI-поиск.</b></li>
+      </ul>
+    </section>
+    <section class="block">
+      <h3>Учтены важные нюансы</h3>
+      <ul>
+        <li><b>Законы США:</b> пользовательское соглашение, защита личных данных по законам Калифорнии, запрет на сбор данных детей до 13 лет, правила возврата денег, предупреждение «не замена помощи специалиста» с телефоном горячей линии 988, доступность сайта для людей с ограничениями.</li>
+        <li><b>«Карта дня» — плашкой, а не всплывающим окном:</b> Google понижает мобильные страницы с перекрывающими окнами.</li>
+        <li><b>Защита:</b> платные тексты выдаёт только сервер, лимиты на запросы, одноразовые ссылки после оплаты, защита домена и почты от подделки, адреса покупателей не попадают в логи.</li>
+      </ul>
+    </section>
+  </div>
+
+</article>
+
+<!-- ============ TRINADEA ============ -->
+<article class="wrap case" id="trinadea">
+  <div class="case-head">
+    <div>
+      <p class="meta">Для бренда уходовой косметики</p>
+      <h2>TRINADEA</h2>
+    </div>
+    <div class="status">
+      <span class="pill">Версия 2.0 собрана</span>
+      <span>Замена версии 1 у текущих пользователей</span>
+    </div>
+  </div>
+  <div class="origin">
+    <span class="label">Откуда идея</span>
+    <p>При создании бренда по уходу за кожей нужно было поддержать и усилить его позиционирование: кожа меняется вместе с фазами цикла женщины. Приложение решает эту задачу и одновременно приводит органический трафик целевой аудитории. Так появилась идея дать покупательнице инструмент на каждый день, а не только баночку: стать её спутником и помочь лучше узнать себя и свой организм.</p>
+  </div>
+  <p class="one">Новый подход к уходу за кожей и сбор базы клиентов ещё до запуска бренда.</p>
+
+  <div class="stage">
+    <figure class="shot">
+      <img src="img/trinadea.jpg" alt="Пять экранов TRINADEA: кольцо цикла «день 10 из 30», календарь, оценка состояния кожи по 10-балльной шкале, графики динамики, статьи" width="1400" height="606" loading="lazy">
+    </figure>
+  </div>
+
+  <div class="htrack">
+    <div><span class="label">Проблема</span><p>Трекеры цикла говорят о датах, а не о коже. Покупательнице сывороток непонятно, почему кожа меняется и что делать в каждой фазе.</p></div>
+    <div><span class="label">Гипотеза</span><p>Ежедневная польза без покупки (день, фаза, что с кожей) возвращает человека к бренду чаще, чем каталог и рассылки.</p></div>
+    <div><span class="label">MVP</span><p>Офлайн-приложение на телефоне: кольцо цикла, оценка 15 показателей, графики по дням цикла, статьи и тесты.</p></div>
+    <div class="k-metric"><span class="label">Метрика</span><p>Удержание: какая доля пользовательниц возвращается через 7 и через 30 дней после установки. Доля дней с оценкой состояния, переход из статьи о фазе к сыворотке этой фазы, рост базы контактов до запуска.</p></div>
+  </div>
+
+  <div class="cols">
+    <section class="block">
+      <h3>Фишки приложения</h3>
+      <ul>
+        <li><b>Оценка состояния:</b> кожа, эмоции и самочувствие по 10-балльной шкале.</li>
+        <li><b>Отслеживание изменений:</b> динамика на графиках по дням цикла, с отметками фаз и овуляции.</li>
+        <li><b>Статьи и тесты,</b> которые помогают понять себя; основаны на достоверных источниках.</li>
+        <li><b>Подключение партнёра</b> — для взаимопонимания в паре.</li>
+        <li><b>Игра для парней</b> «Краш её цикла» и <b>гайд</b> по женскому циклу.</li>
+      </ul>
+    </section>
+    <section class="block">
+      <h3>Что сделано</h3>
+      <ul>
+        <li><b>12 экранов</b> на React + TypeScript: кольцо цикла (маркер можно тянуть по кругу), календарь, оценка 15 показателей в 3 группах, 3 графика с фазами и овуляцией, 10 статей, 3 теста, профиль и бэкап.</li>
+        <li><b>Смежные проекты бренда:</b> чат-бот с политиками ответов и пиксельная игра «Краш её цикла» для мужчин — три уровня о фазах простым языком.</li>
+      </ul>
+    </section>
+  </div>
+
+  <div class="stage">
+    <figure class="shot related">
+      <img src="img/game-title.jpg" alt="Игра «Краш её цикла»: заставка в пиксельном стиле, игра для мужчин" width="585" height="1266" loading="lazy">
+      <img src="img/game-level.jpg" alt="Игра «Краш её цикла», уровень 1: фаза менструации, шкалы энергии, концентрации и либидо" width="585" height="1266" loading="lazy">
+      <figcaption>Смежный проект: игра «Краш её цикла» для мужчин, заставка и первый уровень</figcaption>
+    </figure>
+  </div>
+</article>
+
+<!-- ============ CARHELP ============ -->
+<article class="wrap case" id="jetour">
+  <div class="case-head">
+    <div>
+      <p class="meta">Для автовладельцев, октябрь 2026</p>
+      <h2>CarHelp</h2>
+    </div>
+    <div class="status">
+      <span class="pill">Закрытый бета-тест</span>
+      <span>Первая модель: Jetour T2</span>
+    </div>
+  </div>
+  <div class="origin">
+    <span class="label">Откуда идея</span>
+    <p>Основная идея — боль многих автоновичков: они не знают тонкостей своей машины и что делать, если что-то сломалось. Так родилось интерактивное руководство, ведь когда на приборке загорается незнакомый значок, ответ нужен сразу. Захотелось, чтобы машину можно было «потрогать» на экране и за минуту понять, что это, какие у неё функции и что с этим делать.</p>
+  </div>
+
+  <div class="stage">
+    <div class="shot phones">
+      <figure><img src="img/jetour.jpg" alt="Главный экран: Jetour T2 в неоновом гараже, кнопки ракурсов" width="520" height="1125" loading="lazy"><figcaption>Машина: нажми на деталь</figcaption></figure>
+      <figure><img src="img/car-wheel-problem.jpg" alt="Вкладка «Что-то не так»: спустило колесо в дороге, значок давления, вибрация руля" width="585" height="1266" loading="lazy"><figcaption>Что делать, если спустило колесо</figcaption></figure>
+      <figure><img src="img/car-dash.jpg" alt="«Что горит на приборке»: значки по цветам, поиск" width="585" height="1266" loading="lazy"><figcaption>Значки на приборке</figcaption></figure>
+      <figure><img src="img/car-inside.jpg" alt="«Внутри машины»: схема салона с зонами и поиском" width="585" height="1266" loading="lazy"><figcaption>Салон: зоны и инструкции</figcaption></figure>
+    </div>
+  </div>
+
+  <div class="htrack three">
+    <div><span class="label">Проблема</span><p>Новичок не понимает свою новую машину: знаний не хватает, а поиск ответа в интернете занимает много времени и даёт противоречивые советы.</p></div>
+    <div><span class="label">Решение</span><p>Интерактивное руководство, журнал ТО и журнал ухода — всё в одном приложении. Владелец держит его на телефоне и в моменте находит ответ именно по своей машине.</p></div>
+    <div class="k-metric"><span class="label">Метрика</span><p>Личный проект. Тестовая версия с Яндекс Метрикой и Вебвизором открыта для владельцев T2: смотрю, какие разделы открывают, где застревают и что пишут в форме «Сообщить о проблеме».</p></div>
+  </div>
+
+  <div class="cols">
+    <section class="block wide">
+      <h3>Что сделано</h3>
+      <ul>
+        <li><b>Машина:</b> 5 ракурсов, вид под капотом, живая сцена (капот, свет, дверь), перекраска в официальные цвета.</li>
+        <li><b>33 значка приборки</b> и схема экрана, раздел «Внутри»: 4 вида салона, 10 инструкций.</li>
+        <li><b>ТО по официальной карте Jetour:</b> регламент, напоминания, журнал с выбором из 154 дилерских центров.</li>
+        <li><b>Уход:</b> журнал, сезонный чек-лист, жидкости по комплектации с мнениями владельцев и предупреждением о рисках.</li>
+        <li><b>Тестовая версия:</b> Яндекс Метрика с событиями по разделам и Вебвизором — идёт тестирование и сбор реакций и обратной связи.</li>
+      </ul>
+    </section>
+  </div>
+
+  <div class="result">
+    <div><b>33 / 154 / 10</b><span>значка приборки, дилерских центра, пошаговых инструкций</span></div>
+    <div><b>8 автотестов</b><span>проверяют основные сценарии на каждом изменении</span></div>
+    <div><b>2-я модель</b><span>собрана по тому же процессу: проверка масштабируемости</span></div>
+  </div>
+</article>
+
+<!-- ============ BANK ============ -->
+<article class="wrap case" id="bank">
+  <div class="case-head">
+    <div>
+      <p class="meta">Концепт-редизайн и контент, октябрь 2026</p>
+      <h2>Главный экран банка «по-моему»</h2>
+    </div>
+    <div class="status">
+      <span class="pill">Концепт</span>
+      <span>Не связан с банком, данные вымышлены</span>
+    </div>
+  </div>
+  <div class="origin">
+    <span class="label">Откуда идея</span>
+    <p>Я пользуюсь банковским приложением каждый день, и мои частые действия (ЖКХ, перевод по номеру, Ozon) приходится искать среди промо-блоков. Захотелось показать, как выглядел бы главный экран, собранный вокруг привычек человека, и заодно проверить формат контента «что если бы это делала я».</p>
+  </div>
+  <p class="one">Что, если бы главный экран приложения Альфа-Банка делала я? Два варианта под разные привычки и вертикальный ролик для соцсетей.</p>
+
+  <div class="stage">
+    <figure class="shot hotspots" id="bank-shot">
+      <img src="img/bank.jpg" alt="Два варианта главного экрана: слева общий баланс и карты сверху, справа блок «Часто использую» сверху" width="1000" height="987" loading="lazy">
+      <button type="button" class="hs" style="left: 29%; top: 8.6%" data-t="Общий баланс наверху" data-d="Главный вопрос при открытии приложения — «всё ли в порядке?». Ответ виден сразу, без лишних нажатий.">1</button>
+      <button type="button" class="hs" style="left: 20%; top: 17.5%" data-t="Карты сразу с балансом" data-d="Сумма видна на каждой карте: не нужно открывать карту, чтобы узнать, сколько на ней денег.">2</button>
+      <button type="button" class="hs" style="left: 39.5%; top: 40%" data-t="Оплата под большим пальцем" data-d="Кнопка оплаты телефоном рядом с картами, в нижней половине экрана: удобно одной рукой.">3</button>
+      <button type="button" class="hs" style="left: 26%; top: 58.8%" data-t="То, чем пользуюсь я" data-d="Вместо стандартных быстрых переводов — личные частые действия: перевод по номеру, ЖКХ, Ozon.">4</button>
+      <button type="button" class="hs" style="left: 70%; top: 16.2%" data-t="Самое частое — сразу наверху" data-d="Второй вариант для сценария «быстро заплатить». Набор подстраивается под привычки человека — метка «под вас».">5</button>
+      <button type="button" class="hs" style="left: 74%; top: 43%" data-t="Карты в одну строку" data-d="Компактно: балансы видны, а освободившееся место отдано главному.">6</button>
+      <button type="button" class="hs" style="left: 90.5%; top: 64.2%" data-t="Никаких лишних блоков" data-d="Отдельного блока оплат нет: QR и оплата телефоном встали рядом с поиском.">7</button>
+      <div class="hs-tip" role="status" aria-live="polite" hidden><b></b><span></span></div>
+      <figcaption>Наведите или нажмите на точку, чтобы узнать, почему сделано именно так.</figcaption>
+    </figure>
+  </div>
+
+  <div class="htrack">
+    <div><span class="label">Проблема</span><p>Главный экран перегружен промо и блоками, а частые действия (ЖКХ, перевод по номеру, Ozon) спрятаны.</p></div>
+    <div><span class="label">Гипотеза</span><p>На главном экране должно быть ключевое — то, за чем люди заходят в приложение. Если сократить число действий до нужного, приложением станет быстрее и удобнее пользоваться.</p></div>
+    <div><span class="label">MVP</span><p>Два кликабельных экрана в фирменной палитре и ролик 1080×1920 с голосом, субтитрами и звуками — для проверки гипотезы в соцсетях.</p></div>
+    <div class="k-metric"><span class="label">Метрика</span><p>Более 4 000 просмотров ролика в соцсетях. Какой вариант выбирают в комментариях, сохранения и вовлечённость.</p></div>
+  </div>
+
+  <div class="cols" style="align-items: start">
+    <section class="block">
+      <ul>
+        <li><b>Ролик «было — стало»</b> на HyperFrames: озвучка, субтитры по таймингам слов, звуковые эффекты, вопрос к аудитории в финале.</li>
+      </ul>
+    </section>
+    <section class="block">
+      <h3>Учтены важные нюансы</h3>
+      <ul>
+        <li><b>Никаких реальных данных:</b> на исходном скриншоте номера и суммы закрыты, в концепте — вымышленные имя и счета.</li>
+        <li><b>Jobs To Be Done</b> вместо «красоты»: каждый блок отвечает на конкретное действие пользователя.</li>
+        <li><b>Управление одной рукой:</b> главные действия в зоне большого пальца.</li>
+        <li><b>Узнаваемость бренда</b> без копирования: фирменный красный и тёмная тема, но своя форма карт и навигации.</li>
+      </ul>
+    </section>
+  </div>
+
+  <div class="result">
+    <div><b>2 варианта</b><span>под два сценария использования</span></div>
+    <div><b>7 итераций</b><span>от первого чертежа до финала</span></div>
+    <div><b>1 ролик</b><span>вертикальный, с голосом и субтитрами, под Reels и Shorts</span></div>
+  </div>
+</article>
+
+<!-- ============ AI WAY ============ -->
+<section class="wrap band" aria-labelledby="ai-h">
+  <h2 id="ai-h">Как я работаю с ИИ</h2>
+  <p class="sub">ИИ у меня не генератор текстов, а команда, которой нужно поставить задачу, дать контекст и проверить результат. Вот что повторяется во всех проектах.</p>
+  <div class="ways">
+    <div class="way"><h3>Бриф и память проекта</h3><p>PRODUCT.md, DESIGN.md, PROGRESS.md: аудитория, принципы, решения и их причины. Новая сессия ИИ продолжает с того же места, а не начинает заново.</p></div>
+    <div class="way"><h3>Сначала план, потом код</h3><p>Этапы с критериями «готово», отложенные доработки записаны. Решения о деньгах, юридике и данных пользователей принимаю сама.</p></div>
+    <div class="way"><h3>Автоматические проверки</h3><p>Сборки, которые падают на ошибке в тексте; E2E-тесты; Lighthouse; скриншоты всех экранов. ИИ не может «сказать, что готово» без доказательства.</p></div>
+    <div class="way"><h3>Безопасность и право</h3><p>CSP, секреты вне git, лимиты запросов, правила платёжных сервисов, CCPA и COPPA. Собрала плагин vibe-check для Claude Code: 115 проверок перед запуском.</p></div>
+    <div class="way"><h3>Промпты как ТЗ дизайнеру</h3><p>Стиль, палитра, ракурс, что избегать, референс для единой серии. 78 карт и десятки иллюстраций деталей в одном стиле.</p></div>
+    <div class="way"><h3>Git на каждом шаге</h3><p>140+ коммитов с понятными сообщениями. Любую версию можно вернуть, любое решение — объяснить.</p></div>
+  </div>
+</section>
+
+
+<!-- ============ BACKGROUND ============ -->
+<section class="wrap band" aria-labelledby="b-h">
+  <h2 id="b-h">До ИИ: маркетинг и бренды</h2>
+  <p class="sub">Kimberly-Clark → Голдер-Электроникс → Carely → собственный бренд TRINADEA. Полный цикл бренда: исследования, позиционирование, продукт, упаковка, digital, маркетплейсы.</p>
+  <div class="bg-grid">
+    <div><b>7+ лет</b><span>в бренд-менеджменте FMCG и beauty</span></div>
+    <div><b>до 15 млн ₽</b><span>управляемый маркетинговый бюджет</span></div>
+    <div><b>+12% / +14% / +17%</b><span>выручка за квартал, конверсия в заказ, новые клиенты (Carely)</span></div>
+    <div><b>4 бренда</b><span>запущены с нуля, включая TRINADEA</span></div>
+  </div>
+</section>
+
+<footer class="wrap contact">
+  <div>
+    <h2>Соберу и проверю вашу следующую гипотезу</h2>
+    <p>Покажу любой из проектов вживую на созвоне: код, историю решений и как устроены проверки.</p>
+  </div>
+  <div class="mail">
+    <code id="mail">alena.sivakovan@gmail.com</code>
+    <button type="button" id="copy">Скопировать почту</button>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('copy').addEventListener('click', function () {
+    var b = this, t = document.getElementById('mail').textContent;
+    var done = function () { b.textContent = 'Почта скопирована'; setTimeout(function () { b.textContent = 'Скопировать почту'; }, 1800); };
+    var sel = function () { var r = document.createRange(); r.selectNodeContents(document.getElementById('mail')); var s = getSelection(); s.removeAllRanges(); s.addRange(r); b.textContent = 'Выделено, нажмите Ctrl+C'; };
+    try { navigator.clipboard.writeText(t).then(done, sel); } catch (e) { sel(); }
+  });
+
+  (function () {
+    var box = document.getElementById('bank-shot');
+    var tip = box.querySelector('.hs-tip');
+    var dots = box.querySelectorAll('.hs');
+    var active = null;
+    function show(dot) {
+      if (active) active.setAttribute('aria-expanded', 'false');
+      active = dot;
+      dot.setAttribute('aria-expanded', 'true');
+      tip.querySelector('b').textContent = dot.dataset.t;
+      tip.querySelector('span').textContent = dot.dataset.d;
+      tip.hidden = false;
+      // below the dot, flipped above when it would run past the image; kept inside the image horizontally
+      var w = box.clientWidth, h = box.querySelector('img').clientHeight;
+      var x = dot.offsetLeft, y = dot.offsetTop, r = dot.offsetHeight / 2 + 10;
+      var left = Math.max(8, Math.min(x - tip.offsetWidth / 2, w - tip.offsetWidth - 8));
+      var top = y + r + tip.offsetHeight > h ? y - r - tip.offsetHeight : y + r;
+      tip.style.left = left + 'px';
+      tip.style.top = top + 'px';
+    }
+    function hide() { if (active) active.setAttribute('aria-expanded', 'false'); active = null; tip.hidden = true; }
+    dots.forEach(function (d) {
+      d.setAttribute('aria-expanded', 'false');
+      d.setAttribute('aria-label', d.dataset.t);
+      d.addEventListener('mouseenter', function () { show(d); });
+      d.addEventListener('focus', function () { show(d); });
+      d.addEventListener('click', function (e) { e.stopPropagation(); show(d); });
+    });
+    box.addEventListener('mouseleave', hide);
+    document.addEventListener('click', hide);
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape') hide(); });
+  })();
+</script>
