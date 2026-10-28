@@ -70,14 +70,17 @@ figure { margin: 0; }
 .who { display: flex; flex-wrap: wrap; gap: 6px 22px; font-size: 15px; color: var(--muted); }
 .who b { color: var(--text); font-weight: 600; }
 .hero h1 { margin-top: 28px; font-size: clamp(34px, 4.6vw, 60px); line-height: 1.02; font-weight: 800; letter-spacing: -.03em; max-width: 13em; }
-/* lit glass: solid letters filled with a pearl gradient, white at the top fading to lilac, with a soft neon halo */
-@supports ((-webkit-background-clip: text) or (background-clip: text)) {
-  .hero h1 {
-    background: linear-gradient(180deg, #ffffff 0%, #ece6ff 45%, #b9a6ff 100%);
-    -webkit-background-clip: text; background-clip: text; color: transparent;
-    filter: drop-shadow(0 0 22px rgba(160, 135, 255, .35));
-  }
-}
+/* frosted white letters; the «о» in «продукта» is a hairline outline with an LED dot running around it */
+.hero h1 { color: rgba(255, 255, 255, .7); text-shadow: 0 0 30px rgba(195, 178, 255, .22); }
+.led-o { position: relative; }
+.led-o svg { position: absolute; overflow: visible; pointer-events: none; }
+.led-o .o-line { fill: none; stroke: rgba(255, 255, 255, .7); stroke-width: 1.3; }
+.led-o .o-run { fill: none; stroke-linecap: round; animation: led-run 3.2s linear infinite; }
+.led-o .o-head { stroke: #fff; stroke-width: 3.2; stroke-dasharray: .4 99.6; filter: drop-shadow(0 0 3px #e4dcff) drop-shadow(0 0 9px #c3b2ff) drop-shadow(0 0 16px rgba(170, 150, 255, .8)); }
+.led-o .o-tail { stroke: rgba(195, 178, 255, .55); stroke-width: 1.6; stroke-dasharray: 11 89; animation-name: led-tail; }
+@keyframes led-run { from { stroke-dashoffset: 0; } to { stroke-dashoffset: -100; } }
+@keyframes led-tail { from { stroke-dashoffset: 10.6; } to { stroke-dashoffset: -89.4; } }
+@media (prefers-reduced-motion: reduce) { .led-o .o-run { animation: none; } }
 .hero .lead { margin-top: 28px; font-size: clamp(17px, 1.7vw, 20px); line-height: 1.55; color: var(--muted); max-width: 36em; }
 .path { margin: 22px 0 0; padding: 0; list-style: none; display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 0 28px; max-width: 900px; counter-reset: p; }
 .path li { padding: 14px 0 14px 30px; border-top: 1px solid var(--line); position: relative; font-size: 15px; line-height: 1.5; color: var(--text); min-width: 0; }
@@ -139,7 +142,7 @@ figure { margin: 0; }
 .stage { margin-top: 36px; position: relative; isolation: isolate; }
 .stage::before { content: ""; position: absolute; inset: -40px -20px -60px; z-index: -1; pointer-events: none;
   background: radial-gradient(60% 55% at 50% 45%, color-mix(in srgb, var(--light) 30%, transparent), transparent 70%); filter: blur(10px); }
-.shot img { display: block; width: 100%; height: auto; border-radius: 4px; border: 1px solid var(--line-2); background: var(--panel); }
+.shot img, .shot video { display: block; width: 100%; height: auto; border-radius: 4px; border: 1px solid var(--line-2); background: var(--panel); }
 .shot figcaption { margin-top: 12px; font-size: 14px; color: var(--muted); }
 .shot.trio { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 14px; }
 .shot.trio img:first-child { grid-column: 1 / -1; }
@@ -161,22 +164,22 @@ figure { margin: 0; }
 @media (max-width: 640px) { .hs { width: 24px; height: 24px; font-size: 11px; } }
 /* layered collage: the home page in front, two inner pages fanned out behind it on the right */
 .shot.collage { display: grid; grid-template-columns: minmax(0, 1.75fr) minmax(0, 1fr); align-items: center; padding: 8px 0 12px; }
-.shot.collage img { aspect-ratio: auto; transition: transform .35s ease; }
-.shot.collage img:first-child { grid-column: 1; grid-row: 1 / 3; position: relative; z-index: 2; box-shadow: 0 24px 60px -20px rgba(0,0,0,.7), 0 0 30px -8px var(--neon-glow); }
-.shot.collage img:not(:first-child) { grid-column: 2; aspect-ratio: 949 / 600; object-fit: cover; object-position: top; margin-left: -48px; width: calc(100% + 48px); max-width: none; }
-.shot.collage img:nth-child(2) { grid-row: 1; transform: rotate(2.5deg) translate(-18px, 18px); z-index: 1; }
-.shot.collage img:nth-child(3) { grid-row: 2; transform: rotate(-2.5deg) translate(-4px, -10px); z-index: 3; }
-.shot.collage img:hover { transform: none; z-index: 4; }
+.shot.collage > :is(img, video) { aspect-ratio: auto; transition: transform .35s ease; }
+.shot.collage > :is(img, video):first-child { grid-column: 1; grid-row: 1 / 3; position: relative; z-index: 2; box-shadow: 0 24px 60px -20px rgba(0,0,0,.7), 0 0 30px -8px var(--neon-glow); }
+.shot.collage > :is(img, video):not(:first-child) { grid-column: 2; aspect-ratio: 949 / 600; object-fit: cover; object-position: top; margin-left: -48px; width: calc(100% + 48px); max-width: none; }
+.shot.collage > :is(img, video):nth-child(2) { grid-row: 1; transform: rotate(2.5deg) translate(-18px, 18px); z-index: 1; }
+.shot.collage > :is(img, video):nth-child(3) { grid-row: 2; transform: rotate(-2.5deg) translate(-4px, -10px); z-index: 3; }
+.shot.collage > :is(img, video):hover { transform: none; z-index: 4; }
 .shot.collage figcaption { grid-column: 1 / -1; margin-top: 28px; }
 @media (max-width: 640px) {
   .shot.collage { grid-template-columns: 1fr 1fr; gap: 12px; }
-  .shot.collage img:first-child { grid-column: 1 / -1; grid-row: auto; }
-  .shot.collage img:not(:first-child) { grid-column: auto; grid-row: auto; margin-left: 0; width: 100%; transform: none; }
+  .shot.collage > :is(img, video):first-child { grid-column: 1 / -1; grid-row: auto; }
+  .shot.collage > :is(img, video):not(:first-child) { grid-column: auto; grid-row: auto; margin-left: 0; width: 100%; transform: none; }
   .shot.collage figcaption { margin-top: 4px; }
 }
 .shot.phones { display: grid; grid-template-columns: repeat(4, minmax(0,1fr)); gap: 18px 14px; }
 .shot.phones figure { min-width: 0; }
-.shot.phones img { aspect-ratio: 390 / 844; object-fit: cover; object-position: top; border-radius: 10px; }
+.shot.phones :is(img, video) { aspect-ratio: 390 / 844; object-fit: cover; object-position: top; border-radius: 10px; }
 .shot.phones figcaption { margin-top: 8px; }
 .shot.related { display: grid; grid-template-columns: repeat(2, minmax(0, 260px)); gap: 14px; }
 .shot.related img { aspect-ratio: 390 / 844; object-fit: cover; border-radius: 10px; }
@@ -267,7 +270,7 @@ figure { margin: 0; }
     linear-gradient(var(--panel-2), var(--panel-2)) padding-box,
     linear-gradient(135deg, var(--neon), var(--neon-soft) 40%, var(--neon) 100%) border-box; }
 .pill { border-radius: 99px; background: rgba(195,178,255,.10); border-color: var(--neon-soft); }
-.shot img { border-color: var(--neon-soft); box-shadow: 0 0 24px -8px var(--neon-glow); }
+.shot img, .shot video { border-color: var(--neon-soft); box-shadow: 0 0 24px -8px var(--neon-glow); }
 .mail button { background: var(--neon); color: #17122e; border-radius: 10px; }
 .mail button:hover { background: #ddd3ff; }
 .mail code { padding: 12px 16px; }
@@ -306,7 +309,7 @@ figure { margin: 0; }
   <div class="hero-top">
     <div>
       <div class="who"><b>Алена Сивакова</b><span>Product и Growth marketing с ИИ</span><span>Удалённо</span></div>
-      <h1>Довожу гипотезу до работающего продукта</h1>
+      <h1>Довожу гипотезу до работающего пр<span class="led-o">о</span>дукта</h1>
       <p class="lead">7+ лет в бренд-менеджменте FMCG и beauty, усиленные ИИ.</p>
     </div>
     <svg class="ai-flow" viewBox="0 0 360 230" role="img" aria-label="Схема: идея и ИИ превращаются в готовый продукт">
@@ -407,7 +410,7 @@ figure { margin: 0; }
 
   <div class="stage">
     <figure class="shot collage">
-      <img src="img/tarot-desk.jpg" alt="Главная Tarot Orbit: логотип, три карты с иллюстрациями, счётчики 78 карт, 22 старших, 56 младших арканов" width="1366" height="860" loading="lazy">
+      <video src="img/tarot-desk.mp4" poster="img/tarot-desk.jpg" width="1280" height="806" autoplay muted loop playsinline preload="metadata" aria-label="Главная Tarot Orbit: карты парят и переворачиваются при наведении"></video>
       <img src="img/tarot-card.jpg" alt="Страница карты The Star целиком: иллюстрация, прямое и перевёрнутое значение по сферам жизни, первый шаг и вопрос к себе" width="949" height="1200" loading="lazy">
       <img src="img/tarot-partner.jpg" alt="Собранный партнёрский расклад из 5 карт: карты по позициям, «Вы и партнёр», что держит и что мешает, общий тон" width="949" height="1200" loading="lazy">
       <figcaption>Главная, страница карты с полной трактовкой и собранный партнёрский расклад из 5 карт</figcaption>
@@ -513,6 +516,7 @@ figure { margin: 0; }
     <div class="status">
       <span class="pill">Закрытый бета-тест</span>
       <span>Первая модель: Jetour T2</span>
+      <a class="link" href="https://jetour-t2-demo.netlify.app" target="_blank" rel="noopener">Тестовая версия ↗</a>
     </div>
   </div>
   <div class="origin">
@@ -522,7 +526,7 @@ figure { margin: 0; }
 
   <div class="stage">
     <div class="shot phones">
-      <figure><img src="img/jetour.jpg" alt="Главный экран: Jetour T2 в неоновом гараже, кнопки ракурсов" width="520" height="1125" loading="lazy"><figcaption>Машина: нажми на деталь</figcaption></figure>
+      <figure><video src="img/jetour.mp4" poster="img/jetour.jpg" width="390" height="844" autoplay muted loop playsinline preload="metadata" aria-label="Главный экран: Jetour T2 в неоновом гараже, фары зажигаются и гаснут"></video><figcaption>Машина: нажми на деталь</figcaption></figure>
       <figure><img src="img/car-wheel-problem.jpg" alt="Вкладка «Что-то не так»: спустило колесо в дороге, значок давления, вибрация руля" width="585" height="1266" loading="lazy"><figcaption>Что делать, если спустило колесо</figcaption></figure>
       <figure><img src="img/car-dash.jpg" alt="«Что горит на приборке»: значки по цветам, поиск" width="585" height="1266" loading="lazy"><figcaption>Значки на приборке</figcaption></figure>
       <figure><img src="img/car-inside.jpg" alt="«Внутри машины»: схема салона с зонами и поиском" width="585" height="1266" loading="lazy"><figcaption>Салон: зоны и инструкции</figcaption></figure>
@@ -664,6 +668,45 @@ figure { margin: 0; }
     var sel = function () { var r = document.createRange(); r.selectNodeContents(document.getElementById('mail')); var s = getSelection(); s.removeAllRanges(); s.addRange(r); b.textContent = 'Выделено, нажмите Ctrl+C'; };
     try { navigator.clipboard.writeText(t).then(done, sel); } catch (e) { sel(); }
   });
+
+  // demo clips play only while on screen; with reduced motion they stay on the poster frame
+  (function () {
+    var vids = document.querySelectorAll('.shot video');
+    var still = matchMedia('(prefers-reduced-motion: reduce)').matches;
+    vids.forEach(function (v) { v.muted = true; if (still) { v.removeAttribute('autoplay'); v.pause(); } });
+    if (still || !('IntersectionObserver' in window)) return;
+    var io = new IntersectionObserver(function (es) {
+      es.forEach(function (e) { if (e.isIntersecting) { var p = e.target.play(); if (p && p.catch) p.catch(function () {}); } else e.target.pause(); });
+    }, { threshold: .25 });
+    vids.forEach(function (v) { io.observe(v); });
+  })();
+
+  // LED «о»: draw the glyph's own outline in an SVG laid exactly over the hidden letter, plus an ellipse track for the running dot
+  (function () {
+    var o = document.querySelector('.led-o');
+    var ctx = document.createElement('canvas').getContext('2d');
+    var NS = 'http://www.w3.org/2000/svg';
+    function el(name, attrs) { var e = document.createElementNS(NS, name); for (var k in attrs) e.setAttribute(k, attrs[k]); return e; }
+    function place() {
+      var cs = getComputedStyle(o);
+      ctx.font = cs.fontWeight + ' ' + cs.fontSize + ' ' + cs.fontFamily;
+      var m = ctx.measureText(o.textContent);
+      var l = m.actualBoundingBoxLeft, r = m.actualBoundingBoxRight, a = m.actualBoundingBoxAscent, d = m.actualBoundingBoxDescent;
+      var w = l + r, h = a + d, ink = 1;
+      var svg = el('svg', { width: w + 2 * ink, height: h + 2 * ink, viewBox: (-ink) + ' ' + (-ink) + ' ' + (w + 2 * ink) + ' ' + (h + 2 * ink), 'aria-hidden': 'true' });
+      svg.style.left = (-l - ink) + 'px';
+      svg.style.top = (m.fontBoundingBoxAscent - a - ink) + 'px';
+      var t = el('text', { x: l, y: a, class: 'o-line' });
+      t.textContent = o.textContent;
+      t.style.font = 'inherit'; t.style.letterSpacing = '0';
+      var track = { cx: w / 2, cy: h / 2, rx: w / 2 - .4, ry: h / 2 - .4, pathLength: 100 };
+      svg.append(t, el('ellipse', Object.assign({ class: 'o-run o-tail' }, track)), el('ellipse', Object.assign({ class: 'o-run o-head' }, track)));
+      var old = o.querySelector('svg'); if (old) old.remove();
+      o.appendChild(svg);
+    }
+    (document.fonts ? document.fonts.ready : Promise.resolve()).then(place);
+    var rt; addEventListener('resize', function () { clearTimeout(rt); rt = setTimeout(place, 150); });
+  })();
 
   (function () {
     var box = document.getElementById('bank-shot');
