@@ -72,12 +72,12 @@ figure { margin: 0; }
 .hero h1 { margin-top: 28px; font-size: clamp(34px, 4.6vw, 60px); line-height: 1.02; font-weight: 800; letter-spacing: -.03em; max-width: 13em; }
 /* frosted white letters; the «о» in «продукта» is a hairline outline with an LED dot running around it */
 .hero h1 { color: rgba(255, 255, 255, .7); text-shadow: 0 0 30px rgba(195, 178, 255, .22); }
-.led-o { position: relative; }
-.led-o svg { position: absolute; overflow: visible; pointer-events: none; }
-.led-o .o-line { fill: none; stroke: rgba(255, 255, 255, .7); stroke-width: 1.3; }
+.led-o { position: relative; -webkit-text-stroke: 1.2px rgba(255, 255, 255, .8); }
+/* track = the glyph's ink box, in em of this font (Wix Madefor Display 800), so it sits on the «о» in every browser */
+.led-o svg { position: absolute; left: .02em; top: .482em; width: .6em; height: .53em; overflow: visible; pointer-events: none; }
 .led-o .o-run { fill: none; stroke-linecap: round; animation: led-run 3.2s linear infinite; }
-.led-o .o-head { stroke: #fff; stroke-width: 3.2; stroke-dasharray: .4 99.6; filter: drop-shadow(0 0 3px #e4dcff) drop-shadow(0 0 9px #c3b2ff) drop-shadow(0 0 16px rgba(170, 150, 255, .8)); }
-.led-o .o-tail { stroke: rgba(195, 178, 255, .55); stroke-width: 1.6; stroke-dasharray: 11 89; animation-name: led-tail; }
+.led-o .o-head { stroke: #fff; stroke-width: 5; stroke-dasharray: .4 99.6; filter: drop-shadow(0 0 3px #e4dcff) drop-shadow(0 0 9px #c3b2ff) drop-shadow(0 0 16px rgba(170, 150, 255, .8)); }
+.led-o .o-tail { stroke: rgba(195, 178, 255, .6); stroke-width: 2.6; stroke-dasharray: 11 89; animation-name: led-tail; }
 @keyframes led-run { from { stroke-dashoffset: 0; } to { stroke-dashoffset: -100; } }
 @keyframes led-tail { from { stroke-dashoffset: 10.6; } to { stroke-dashoffset: -89.4; } }
 @media (prefers-reduced-motion: reduce) { .led-o .o-run { animation: none; } }
@@ -309,7 +309,7 @@ figure { margin: 0; }
   <div class="hero-top">
     <div>
       <div class="who"><b>Алена Сивакова</b><span>Product и Growth marketing с ИИ</span><span>Удалённо</span></div>
-      <h1>Довожу гипотезу до работающего пр<span class="led-o">о</span>дукта</h1>
+      <h1>Довожу гипотезу до работающего пр<span class="led-o">о<svg viewBox="0 0 60 53" aria-hidden="true"><ellipse class="o-run o-tail" cx="30" cy="26.5" rx="30" ry="26.5" pathLength="100"/><ellipse class="o-run o-head" cx="30" cy="26.5" rx="30" ry="26.5" pathLength="100"/></svg></span>дукта</h1>
       <p class="lead">7+ лет в бренд-менеджменте FMCG и beauty, усиленные ИИ.</p>
     </div>
     <svg class="ai-flow" viewBox="0 0 360 230" role="img" aria-label="Схема: идея и ИИ превращаются в готовый продукт">
@@ -679,33 +679,6 @@ figure { margin: 0; }
       es.forEach(function (e) { if (e.isIntersecting) { var p = e.target.play(); if (p && p.catch) p.catch(function () {}); } else e.target.pause(); });
     }, { threshold: .25 });
     vids.forEach(function (v) { io.observe(v); });
-  })();
-
-  // LED «о»: draw the glyph's own outline in an SVG laid exactly over the hidden letter, plus an ellipse track for the running dot
-  (function () {
-    var o = document.querySelector('.led-o');
-    var ctx = document.createElement('canvas').getContext('2d');
-    var NS = 'http://www.w3.org/2000/svg';
-    function el(name, attrs) { var e = document.createElementNS(NS, name); for (var k in attrs) e.setAttribute(k, attrs[k]); return e; }
-    function place() {
-      var cs = getComputedStyle(o);
-      ctx.font = cs.fontWeight + ' ' + cs.fontSize + ' ' + cs.fontFamily;
-      var m = ctx.measureText(o.textContent);
-      var l = m.actualBoundingBoxLeft, r = m.actualBoundingBoxRight, a = m.actualBoundingBoxAscent, d = m.actualBoundingBoxDescent;
-      var w = l + r, h = a + d, ink = 1;
-      var svg = el('svg', { width: w + 2 * ink, height: h + 2 * ink, viewBox: (-ink) + ' ' + (-ink) + ' ' + (w + 2 * ink) + ' ' + (h + 2 * ink), 'aria-hidden': 'true' });
-      svg.style.left = (-l - ink) + 'px';
-      svg.style.top = (m.fontBoundingBoxAscent - a - ink) + 'px';
-      var t = el('text', { x: l, y: a, class: 'o-line' });
-      t.textContent = o.textContent;
-      t.style.font = 'inherit'; t.style.letterSpacing = '0';
-      var track = { cx: w / 2, cy: h / 2, rx: w / 2 - .4, ry: h / 2 - .4, pathLength: 100 };
-      svg.append(t, el('ellipse', Object.assign({ class: 'o-run o-tail' }, track)), el('ellipse', Object.assign({ class: 'o-run o-head' }, track)));
-      var old = o.querySelector('svg'); if (old) old.remove();
-      o.appendChild(svg);
-    }
-    (document.fonts ? document.fonts.ready : Promise.resolve()).then(place);
-    var rt; addEventListener('resize', function () { clearTimeout(rt); rt = setTimeout(place, 150); });
   })();
 
   (function () {
