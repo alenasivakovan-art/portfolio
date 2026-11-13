@@ -88,7 +88,7 @@ figure { margin: 0; }
 .path li b { display: block; font-size: 16px; font-weight: 600; color: var(--text); margin-bottom: 2px; }
 
 /* ---------- project index ---------- */
-.index { padding-block: 8px 24px; display: grid; grid-template-columns: repeat(4, minmax(0,1fr)); gap: 14px; }
+.index { padding-block: 8px 24px; display: grid; grid-template-columns: repeat(5, minmax(0,1fr)); gap: 14px; }
 .index a { position: relative; display: grid; grid-template-rows: auto 1fr; text-decoration: none; color: var(--text); border-radius: 4px; overflow: hidden; background: var(--panel); border: 1px solid var(--line); transition: border-color .2s, transform .2s; min-width: 0; }
 .index a:hover { border-color: color-mix(in srgb, var(--light) 60%, transparent); transform: translateY(-2px); }
 .index .thumb { aspect-ratio: 16 / 10; overflow: hidden; border-bottom: 1px solid var(--line); background: radial-gradient(80% 90% at 50% 100%, color-mix(in srgb, var(--light) 45%, transparent), transparent 75%); }
@@ -115,6 +115,8 @@ figure { margin: 0; }
 #trinadea { --light: var(--lilac); }
 #jetour { --light: var(--cyan); }
 #bank { --light: var(--red); }
+#game { --light: var(--ok); }
+.shot.phones.game :is(img, video) { aspect-ratio: 9 / 16; }
 .case-head { display: grid; grid-template-columns: minmax(0,1fr) auto; gap: 16px 32px; align-items: end; }
 .case-head .meta { font-size: 15px; color: var(--muted); margin-bottom: 12px; }
 .case-head h2 { font-size: clamp(36px, 5.4vw, 64px); line-height: 1; letter-spacing: -.035em; }
@@ -358,6 +360,7 @@ figure { margin: 0; }
   <a href="#tarot" style="--light: var(--amber)"><div class="thumb"><img src="img/tarot-desk.jpg" alt="" width="1366" height="860"></div><div class="txt"><span class="label">США, сайт открыт</span><b>Tarot Orbit</b><span>Таро-сервис на английском: SEO, платный доступ, личный кабинет</span></div></a>
   <a href="#trinadea" style="--light: var(--lilac)"><div class="thumb"><img src="img/trinadea.jpg" alt="" width="1400" height="606"></div><div class="txt"><span class="label">Для бренда косметики</span><b>TRINADEA</b><span>PWA-трекер цикла и кожи для бренда сывороток</span></div></a>
   <a href="#jetour" style="--light: var(--cyan)"><div class="thumb"><img src="img/jetour.jpg" alt="" width="520" height="1125" style="object-position: center 30%"></div><div class="txt"><span class="label">Бета-тест</span><b>CarHelp</b><span>Интерактивное руководство автовладельца: машина, значки приборки, ТО</span></div></a>
+  <a href="#game" style="--light: var(--ok)"><div class="thumb"><img src="img/game-cover.jpg" alt="" width="800" height="450"></div><div class="txt"><span class="label">Своя игра</span><b>До блеска</b><span>Уютный симулятор уборки для игровых веб-площадок</span></div></a>
   <a href="#bank" style="--light: var(--red)"><div class="thumb"><img src="img/bank.jpg" alt="" width="1000" height="1076"></div><div class="txt"><span class="label">Концепт</span><b>Банк «по-моему»</b><span>Редизайн главного экрана банковского приложения</span></div></a>
 </nav>
 
@@ -556,6 +559,55 @@ figure { margin: 0; }
     <div><b>33 / 154 / 10</b><span>значка приборки, дилерских центра, пошаговых инструкций</span></div>
     <div><b>8 автотестов</b><span>проверяют основные сценарии на каждом изменении</span></div>
     <div><b>2-я модель</b><span>собрана по тому же процессу: проверка масштабируемости</span></div>
+  </div>
+</article>
+
+<!-- ============ GAME ============ -->
+<article class="wrap case" id="game">
+  <div class="case-head">
+    <div>
+      <p class="meta">Собственная игра для веб-площадок, ноябрь 2026</p>
+      <h2>Симулятор уборки: До блеска</h2>
+    </div>
+    <div class="status">
+      <span class="pill">На модерации каталога Playgama</span>
+      <span>Песочница: около 400 игроков за 5 дней</span>
+    </div>
+  </div>
+  <div class="origin">
+    <span class="label">Откуда идея</span>
+    <p>Захотелось пройти полный цикл запуска собственного продукта на игровых площадках: от идеи и арта до монетизации, аналитики и решений по данным первых игроков. Уютная уборка без таймера и проигрыша — жанр, который подходит широкой аудитории веб-игр и даёт понятное удовольствие от результата «было грязно — стало чисто».</p>
+  </div>
+  <p class="one">Уютная уборка в стиле старой книжной иллюстрации: 23 уровня, без таймера и проигрыша.</p>
+
+  <div class="stage">
+    <div class="shot phones game">
+      <figure><video src="img/game.mp4" poster="img/game.jpg" width="432" height="768" autoplay muted loop playsinline preload="metadata" aria-label="Уровень «Раковина»: душ, средство, пена и губка — раковина становится чистой"></video><figcaption>Уровень от грязи до блеска</figcaption></figure>
+      <figure><img src="img/game-1.jpg" alt="Уровень «Плита»: нагар и крошки на конфорках" width="432" height="768" loading="lazy"><figcaption>Плита</figcaption></figure>
+      <figure><img src="img/game-3.jpg" alt="Уровень «Аквариум»: заросшее стекло, рыбки и грунт" width="432" height="768" loading="lazy"><figcaption>Аквариум</figcaption></figure>
+      <figure><img src="img/game-4.jpg" alt="Уровень «Микроволновка»: брызги и нагар внутри" width="432" height="768" loading="lazy"><figcaption>Микроволновка</figcaption></figure>
+    </div>
+  </div>
+
+  <div class="htrack">
+    <div><span class="label">Гипотеза</span><p>Спокойный геймплей без таймера и проигрыша удержит игроков веб-площадок, а бонусы за просмотр рекламы дадут монетизацию без покупок.</p></div>
+    <div><span class="label">MVP</span><p>23 уровня, бонусные наборы (груминг-салон с 6 питомцами, автомойка), шкала «лапок» за уровни и рекламу, русский и английский.</p></div>
+    <div><span class="label">Данные</span><p>Песочница Playgama, около 400 игроков: 19% не дожидались загрузки, первый уровень «Сковорода» заканчивали около 47%, рекламу за награду смотрели 3%.</p></div>
+    <div class="k-metric"><span class="label">Решение</span><p>Быстрый старт: первый уровень грузится за 0,6 МБ вместо 3 МБ. Первым поставлен лёгкий уровень «Сушёное мыло». Эффект измеряем на следующей волне игроков.</p></div>
+  </div>
+
+  <div class="cols">
+    <section class="block wide">
+      <h3>Что сделано</h3>
+      <ul>
+        <li><b>Полный цикл за 10 дней:</b> от первого прототипа 3 ноября до отправки в каталог Playgama 13 ноября.</li>
+        <li><b>Арт:</b> винтажная книжная акварель и тушь по промптам для ИИ-генерации, вертикальный формат 9:16; грязь рисуется кодом.</li>
+        <li><b>Игра собрана с ИИ в Claude Code</b> на JavaScript и Canvas: у каждого инструмента свой звук и след, уровень заканчивается сам, когда вещь действительно чистая.</li>
+        <li><b>Монетизация:</b> 2 «лапки» за новый уровень и 3 за рекламу; 30 лапок открывают бонусный набор на выбор.</li>
+        <li><b>Аналитика:</b> собственные события прогресса, оценки уровня и просмотра рекламы — по ним найдены потери на загрузке и на первом уровне.</li>
+        <li><b>Площадки:</b> версия для Playgama на модерации, подготовлены сборки и обложки для VK Play и Яндекс Игр, отдельная версия для GamePush под международный рынок.</li>
+      </ul>
+    </section>
   </div>
 </article>
 
